@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Detail{% endblock %}
+
+{% block body %}
+
+    
+    <div class="container mt-5 p-5" style="background-color: rgb(230, 230, 230);">
+        <img src="{{ asset("uploads/images/chambre/" ~ item.photo) }}" alt="" style="height: 377px; width: 100%; object-fit :cover; position:bottom;">
+    </div>
+    
+    <div class="container mt-2 p-2">
+        
+        <h2 class="mt-5" style="font-size: 36px; color: #333;">
+                {{ item.titre }} 
+        </h2>
+        
+        <p class="mt-3">
+        {{ item.descriptionCourte | raw }}
+        </p>
+        <hr>
+    </div>
+
+
+    <div class="container mt-5">
+        <h3 style="font-size: 24px; color: #333;" class="mb-5">Détails</h3>
+        
+        <p class="text-center mt-3">{{ item.descriptionLongue | raw }}</p>
+        <hr>
+    </div>
+
+    <div class="container mt-5">
+        <h2 class="mb-5" style="color: #333">Réservation</h2>
+
+        {{ form_start(formCommande) }}
+
+            {{ form_row(formCommande.date_arrivee) }}
+            {{ form_row(formCommande.date_depart) }}
+            {{ form_row(formCommande.prenom) }}
+            {{ form_row(formCommande.nom) }}
+            {{ form_row(formCommande.telephone) }}
+            {{ form_row(formCommande.email) }}
+
+        <button type="submit" class="btn btn-dark mt-5 mb-5"><a href="{{ path('reservation', {id: item.id}) }}" style="text-decoration: none; color: #fff">Réserver</a></button>
+        {{ form_end(formCommande) }}
+    </div>
+
+
+
+        <hr>
+
+        <a href="{{ path('chambre') }}" style="text-decoration: none;" class="mt-5"> < Voir toutes les chambres</a>
+{% endblock %}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.0/minty/bootstrap.min.css" integrity="sha512-NXJDZEor7THMyky4W3o7oqua70wf7v7YDp+UfJxCLA6DJZIxksgnnpd+kQF0GsT1Mmw/VxsTGpnJcC1yapOEfw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {% block stylesheets %}
+        {% endblock %}
+
+        {% block javascripts %}
+        {% endblock %}
+    </head>
+    <body>
+            <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ path('home') }}">My Hotel</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="{{ path('home') }}">Accueil
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('chambre') }}">Séjour</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('restauration') }}">Restauration</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Spa</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Réservation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Avis</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">L'hôtel</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Actualités</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+        {% for label, msgs in app.flashes %}
+				{% for msg in msgs %}
+					<div class="container alert alert-{{ label }} text-center mt-4">
+						{{ msg }}
+					</div>
+
+				{% endfor %}
+			{% endfor %}
+			{# boucle qui permet d'afficher les flashs dans des couleurs différentes dynamiquement selon le type (voir doc flashs) #}
+        {% block body %}
+        {% endblock %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    </body>
+</html>
