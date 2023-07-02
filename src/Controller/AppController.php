@@ -18,14 +18,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AppController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function index(SliderRepository $repo): Response
+    public function index(ChambreRepository $repo): Response
     {
-        $slider = $repo->findAll();
-        // $slider = $repo->findBy(['page'=>'spa']);
-
+        
+        $chambres = $repo->findAll();
 
         return $this->render('app/index.html.twig', [
-            'slider' => $slider
+            'chambres' => $chambres
         ]);
     }
 
@@ -94,6 +93,24 @@ class AppController extends AbstractController
     public function restauration()
     {
         return $this->render('app/restauration.html.twig');
+    }
+
+    #[Route('/contact', name: 'contact')]
+    public function contact(): Response
+    {
+        
+        
+
+        return $this->render('app/contact.html.twig');
+    }
+
+    #[Route('/spa', name: 'spa')]
+    public function spa(): Response
+    {
+        
+        
+
+        return $this->render('app/spa.html.twig');
     }
 
     

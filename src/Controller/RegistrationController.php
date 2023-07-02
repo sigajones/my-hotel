@@ -2,14 +2,15 @@
 
 namespace App\Controller;
 
+use Datetime;
 use App\Entity\Membre;
 use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class RegistrationController extends AbstractController
 {
@@ -27,7 +28,8 @@ class RegistrationController extends AbstractController
                     $user,
                     $form->get('plainPassword')->getData()
                 )
-            );
+            )
+                ->setDateEnregistrement(new Datetime);
 
             $entityManager->persist($user);
             $entityManager->flush();

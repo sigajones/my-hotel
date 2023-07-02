@@ -4,22 +4,21 @@
 
 {% block body %}
 <div>
-    <h1 class="text-center">Bienvenue dans My Hotel!</h1>
-    <div id="carouselExampleIndicators" class="carousel slide">
+    <div id="carouselExampleIndicators" class="carousel slide" >
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
-    <div class="carousel-inner">
+    <div class="carousel-inner" style="max-height: 577px;">
         <div class="carousel-item active">
-        <img src="{{ asset('uploads/images/') }}" class="d-block w-100" alt="...">
+        <img src="{{ asset('uploads/images/1687869278-the-anam-twiicisp2s-unsplash-9d0a13ae08eb9238cb64429120e5dc835452541d.jpg') }}" class="d-block w-100" alt="vue sur hotel et piscine" style="object-position: bottom;">
         </div>
         <div class="carousel-item">
-        <img src="" class="d-block w-100" alt="...">
+        <img src="{{ asset('uploads/images/1687867933-sasha-kaunas-xeaaoiznfv8-unsplash-db28f84d2d2f58b39d7b5ba511e59997e3da4801.jpg') }}" class="d-block w-100" alt="vue sur piscine" style="object-position: bottom;">
         </div>
         <div class="carousel-item">
-        <img src="" class="d-block w-100" alt="...">
+        <img src="{{ asset('uploads/images/1687870055-roberto-nickson-emqnsqwqqdo-unsplash-c8c7ba58e57e1f8115305f36de244ac8deadae0e.jpg') }}" class="d-block w-100" alt="vue chambre suite" style="object-position: bottom;">
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -32,5 +31,25 @@
     </button>
     </div>
 </div>
+
+        <h2 class="text-center mt-5" style="color: #333;">Les chambres</h2>
+{% for item in chambres %}
+    <div class="card mb-3 mt-5 mx-auto" style="max-width: 740px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{ asset("uploads/images/chambre/" ~ item.photo) }}" class="img-fluid rounded-start" alt="..." style="height: 200px;">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ item.titre }}</h5>
+        <p class="card-text">{{ item.descriptionCourte | raw }}</p>
+        <button type="button" class="btn btn-light"><a href="{{ path('detail-chambre', {id: item.id}) }}" style="text-decoration: none;">Détails</a></button>
+        <button type="button" class="btn btn-dark"><a href="{{ path('detail-chambre', {id: item.id}) }}" style="text-decoration: none; color: #fff">Réserver</a></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    {% endfor %}
 
 {% endblock %}
